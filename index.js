@@ -1,7 +1,7 @@
 const fs = require('fs-extra')
 const path = require('path')
 
-const rootPath = 'C:\\Sources\\notes2.bootstrap'
+const rootPath = 'C:\\Sources\\WebAppV2\\Solutions\\WebApp\\wwwroot\\src\\vue\\areas\\field-record-system'
 
 const getFiles = function(dir, level) {
 
@@ -18,7 +18,7 @@ const getFiles = function(dir, level) {
       level.children.push(child)
       getFiles(dir + '\\' + file, child)
     } else {
-      if (path.extname(file) === '.vue') {
+      if (path.extname(file) === '.vue' || path.extname(file) === '.js') {
         level.children.push({
           name: file,
           value: 99
@@ -34,4 +34,4 @@ const rootLevel = {name: 'root', children: []}
 
 const result = getFiles(rootPath, rootLevel)
 
-console.info(JSON.stringify(result))
+fs.writeFileSync('out.json', JSON.stringify(result))

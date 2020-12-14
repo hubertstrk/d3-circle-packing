@@ -21,7 +21,7 @@ const getFiles = function(dir, level) {
       if (path.extname(file) === '.vue' || path.extname(file) === '.js') {
         level.children.push({
           name: file,
-          value: 99
+          value: stat.size
         })
       }
     }
